@@ -1,3 +1,4 @@
+//VARIAVEIS
 let canvas = document.getElementById("cachorro");
 let context = canvas.getContext("2d");
 let box = 32;
@@ -7,7 +8,12 @@ cachorro[0] = {
     y: 8 * box
 }
 let direcao = "right";
+let comida = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
+//FUNÇÕES DE CRIAÇÃO
 function criarBG() {
     context.fillStyle = "Lightgray";
     context.fillRect(0, 0, 16 * box, 16 * box)
@@ -20,6 +26,12 @@ function criarCachorro() {
     }
 }
 
+function carne() {
+    context.fillStyle = "red";
+    context.fillRect(comida.x, comida.y, box, box);
+}
+
+//FUNÇÕES DE EVENTO
 document.addEventListener('keydown', update);
 
 function update(event) {
@@ -38,6 +50,7 @@ function iniciarJogo() {
 
     criarBG();
     criarCachorro();
+    carne();
 
     let cachorroX = cachorro[0].x;
     let cachorroY = cachorro[0].y;
