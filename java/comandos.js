@@ -12,6 +12,7 @@ let comida = {
     x: Math.floor(Math.random() * 15 + 1) * box,
     y: Math.floor(Math.random() * 15 + 1) * box
 }
+let jogo = setInterval(iniciarJogo, 100);
 
 //FUNÇÕES DE CRIAÇÃO
 function criarBG() {
@@ -48,6 +49,13 @@ function iniciarJogo() {
     if (cachorro[0].y > 15 * box && direcao == "down") cachorro[0].y = 0
     if (cachorro[0].y < 0 * box && direcao == "up") cachorro[0].y = 16 * box;
 
+    for (i = 1; i < cachorro.length; i++) {
+        if (cachorro[0].x == cachorro[i].x && cachorro[0].y == cachorro[i].y) {
+            clearInterval(jogo);
+            alert('Game Over :( da F5 ai vei');
+        }
+    }
+
     criarBG();
     criarCachorro();
     carne();
@@ -74,5 +82,3 @@ function iniciarJogo() {
 
     cachorro.unshift(newHead);
 }
-
-let jogo = setInterval(iniciarJogo, 150);
