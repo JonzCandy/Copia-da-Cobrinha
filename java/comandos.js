@@ -45,7 +45,7 @@ function iniciarJogo() {
 
     if (cachorro[0].x > 15 * box && direcao == "right") cachorro[0].x = 0;
     if (cachorro[0].x < 0 * box && direcao == "left") cachorro[0].x = 16 * box;
-    if (cachorro[0].y > 15 * box && direcao == "down") cachorro[0].y = 0;
+    if (cachorro[0].y > 15 * box && direcao == "down") cachorro[0].y = 0
     if (cachorro[0].y < 0 * box && direcao == "up") cachorro[0].y = 16 * box;
 
     criarBG();
@@ -60,7 +60,12 @@ function iniciarJogo() {
     if (direcao == "up") cachorroY -= box;
     if (direcao == "down") cachorroY += box;
 
-    cachorro.pop();
+    if (cachorroX != comida.x || cachorroY != comida.y) {
+        cachorro.pop();
+    } else {
+        comida.x = Math.floor(Math.random() * 15 + 1) * box;
+        comida.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
     let newHead = {
         x: cachorroX,
@@ -70,4 +75,4 @@ function iniciarJogo() {
     cachorro.unshift(newHead);
 }
 
-let jogo = setInterval(iniciarJogo, 100);
+let jogo = setInterval(iniciarJogo, 150);
